@@ -1,0 +1,8 @@
+engineStrict: true
+ignoredBuiltDependencies:
+  - esbuild
+  - "@tailwindcss/oxide"
+  - spawn-sync
+
+overrides:
+  "@wxt-dev/browser": ^0.1.4
