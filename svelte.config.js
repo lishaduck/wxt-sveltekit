@@ -10,10 +10,12 @@ const config = {
   kit: {
     adapter: adapter({
       fallback: "404.html",
+
+      pages: process.env["WXT_SVELTEKIT_OUTDIR"],
     }),
 
     output: {
-      bundleStrategy: "inline",
+      bundleStrategy: "single",
     },
     router: {
       resolution: "client",
