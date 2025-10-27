@@ -84,9 +84,9 @@ export default defineWxtModule((wxt) => {
 
   // Rebuilt during development
   wxt.hooks.hookOnce("build:done", () => {
-    const entrypointPath = path.resolve(wxt.config.entrypointsDir, "popup");
+    const srcDir = path.resolve(wxt.config.wxtDir, "..", "src");
     wxt.server?.watcher.on("all", async (_, file) => {
-      if (file.startsWith(entrypointPath)) {
+      if (file.startsWith(srcDir)) {
         buildApp();
         wxt.server?.reloadPage("popup.html");
         wxt.logger.success("`[sveltekit-builder]` Reloaded `popup.html`");
