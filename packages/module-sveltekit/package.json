@@ -16,5 +16,8 @@
   "peerDependencies": {
     "vite": "catalog:peer",
     "wxt": "catalog:peer"
+  },
+  "dependencies": {
+    "ohash": "^2.0.11"
   }
 }

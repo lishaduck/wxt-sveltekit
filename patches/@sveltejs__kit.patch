@@ -1,0 +1,13 @@
+diff --git a/src/runtime/client/utils.js b/src/runtime/client/utils.js
+index c233ef9ae52f52ec3254ebb4d9c4d20fc23bb9fc..de9509a5eb4066561cd3a679cae8d8d44d7c8f1d 100644
+--- a/src/runtime/client/utils.js
++++ b/src/runtime/client/utils.js
+@@ -322,7 +322,7 @@ export function is_external_url(url, base, hash_routing) {
+ 		}
+ 
+ 		// be lenient if serving from filesystem
+-		if (url.protocol === 'file:' && url.pathname.replace(/\/[^/]+\.html?$/, '') === base) {
++		if (url.pathname.replace(/\/[^/]+\.html?$/, '') === base) {
+ 			return false;
+ 		}
+ 

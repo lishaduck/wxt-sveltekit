@@ -14,6 +14,7 @@ export default {
       pages: process.env["WXT_SVELTEKIT_OUTDIR"]!,
     }),
 
+    appDir: "popup",
     output: {
       bundleStrategy: "single",
     },
