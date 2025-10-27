@@ -1,0 +1,20 @@
+{
+  "name": "wxt-module-sveltekit",
+  "version": "0.0.1",
+  "license": "UPL-1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/sveltekit-builder.ts"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:types",
+    "jiti": "catalog:dev",
+    "typescript": "catalog:dev",
+    "vite": "catalog:dev",
+    "wxt": "catalog:dev"
+  },
+  "peerDependencies": {
+    "vite": "catalog:peer",
+    "wxt": "catalog:peer"
+  }
+}

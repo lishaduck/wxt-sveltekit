@@ -1,8 +1,8 @@
 import adapter from "@sveltejs/adapter-static";
+import type { Config } from "@sveltejs/kit";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
+export default {
   // Consult https://svelte.dev/docs/kit/integrations
   // for more information about preprocessors
   preprocess: vitePreprocess(),
@@ -11,7 +11,7 @@ const config = {
     adapter: adapter({
       fallback: "404.html",
 
-      pages: process.env["WXT_SVELTEKIT_OUTDIR"],
+      pages: process.env["WXT_SVELTEKIT_OUTDIR"]!,
     }),
 
     output: {
@@ -21,6 +21,14 @@ const config = {
       resolution: "client",
       type: "hash",
     },
+
+    typescript: {
+      config(config: Record<string, unknown>) {
+        config["include"] = (config["include"] as string[]).flatMap((path) =>
+          path.replace("vite.config", "*.config"),
+        );
+      },
+    },
   },
 
   compilerOptions: {
@@ -28,6 +36,4 @@ const config = {
       async: true,
     },
   },
-};
-
-export default config;
+} satisfies Config;

@@ -1,0 +1,43 @@
+{
+  "name": "wxt-sveltekit-example",
+  "private": true,
+  "version": "0.0.1",
+  "license": "UPL-1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "postinstall": "wxt prepare",
+    "prepare": "svelte-kit sync",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "format": "prettier --write .",
+    "lint": "prettier --check . && eslint ."
+  },
+  "devDependencies": {
+    "@eslint/compat": "catalog:dev",
+    "@eslint/js": "catalog:dev",
+    "@sveltejs/adapter-static": "catalog:dev",
+    "@sveltejs/kit": "catalog:dev",
+    "@sveltejs/vite-plugin-svelte": "catalog:dev",
+    "@tailwindcss/vite": "catalog:dev",
+    "@types/node": "catalog:types",
+    "eslint": "catalog:dev",
+    "eslint-plugin-svelte": "catalog:dev",
+    "globals": "catalog:dev",
+    "jiti": "catalog:dev",
+    "svelte": "catalog:dev",
+    "svelte-check": "catalog:dev",
+    "tailwindcss": "catalog:dev",
+    "typescript": "catalog:dev",
+    "typescript-eslint": "catalog:dev",
+    "vite": "catalog:dev",
+    "vite-plugin-devtools-json": "catalog:dev",
+    "wxt": "catalog:dev",
+    "wxt-module-sveltekit": "workspace:*"
+  }
+}
