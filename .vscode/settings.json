@@ -1,5 +1,8 @@
 {
   "eslint.options": {
     "flags": ["v10_config_lookup_from_file"]
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
   }
 }

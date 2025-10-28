@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+:root {
+  @apply h-96 w-72 bg-red-50 text-green-950 dark:bg-red-950 dark:text-green-50;
+}
+
+body {
+  @apply contents;
+}
