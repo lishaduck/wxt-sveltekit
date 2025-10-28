@@ -4,8 +4,8 @@ import path from "node:path";
 import { type InlineConfig, build, mergeConfig } from "vite";
 import { defineWxtModule } from "wxt/modules";
 
-const HEAD_REGEX = /\n\t\t<link .+>.+<\/head>/s;
-const BODY_REGEX = /<body.*>.+<\/body>/s;
+const HEAD_REGEX = /(?:\n\t\t<link .+>.+)?<\/head>/s;
+const BODY_REGEX = /<body.*>.*<\/body>/s;
 const SCRIPT_REGEX = /<script>(.+?)<\/script>/s;
 
 export default defineWxtModule((wxt) => {
@@ -57,8 +57,8 @@ export default defineWxtModule((wxt) => {
     );
 
     const popupHtmlModified = popupHtml
-      .replace("</head>", svelteKitHead)
-      .replace("<body></body>", svelteKitBody)
+      .replace(HEAD_REGEX, svelteKitHead)
+      .replace(BODY_REGEX, svelteKitBody)
       .replace(SCRIPT_REGEX, `<script src="/${svelteKitScriptPath}"></script>`);
 
     await Promise.all([
@@ -80,17 +80,19 @@ export default defineWxtModule((wxt) => {
   }
 
   // Build the popup
-  wxt.hooks.hook("build:done", buildApp);
+  wxt.hooks.hook("build:done", async () => await buildApp());
 
   // Rebuilt during development
   wxt.hooks.hookOnce("build:done", () => {
     const srcDir = path.resolve(wxt.config.wxtDir, "..", "src");
     wxt.server?.watcher.on("all", async (_, file) => {
-      if (file.startsWith(srcDir)) {
-        buildApp();
+      if (file.startsWith(srcDir) || BUILD_CONFIG.test(file)) {
+        await buildApp();
         wxt.server?.reloadPage("popup.html");
         wxt.logger.success("`[sveltekit-builder]` Reloaded `popup.html`");
       }
     });
   });
 });
+
+const BUILD_CONFIG = /(?:vite|svelte)\.config\.ts$|\.env$/;
